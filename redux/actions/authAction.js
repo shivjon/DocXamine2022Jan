@@ -10,7 +10,7 @@ export const OFFLINE_STATUS = "OFFLINE_STATUS";
 
 import axios from "axios";
 
-const BASE_URL = 'https://api.bharatdarshan.app/api/users';
+const BASE_URL = 'https://backend.docxamine.com/api';
 // const BASE_URL = 'http://192.168.43.190:3002/api/users';
 
 
@@ -51,7 +51,7 @@ export const registerUser = (authData) => {
     var result = [];
     return async dispatch => {
         // logic to make a post to REGISTER the user
-    await  axios.post( `${BASE_URL}/Registration`, authData)
+    await  axios.post( `${BASE_URL}/signup`, authData)
         .then(function (response) {
         // console.log(response.data);
         result = response.data

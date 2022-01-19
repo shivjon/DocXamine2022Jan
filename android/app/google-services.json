@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "469300286581",
+    "firebase_url": "https://docxamine-fec4b.firebaseio.com",
+    "project_id": "docxamine-fec4b",
+    "storage_bucket": "docxamine-fec4b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:469300286581:android:5d4f417ff410bee9e7d43c",
+        "android_client_info": {
+          "package_name": "com.docxamine"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "469300286581-e8n6kq1g6ndd31ojoefgqafvkdoejdip.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.docxamine",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "469300286581-ba087nu2cfhbo4vosurpk2a75kdbgpd2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvMEj-BF3mVNjHTU_f9HR2zdb-m-opA9s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "469300286581-ba087nu2cfhbo4vosurpk2a75kdbgpd2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "469300286581-qtnc0npdfp4n9bhcdqlsqq5s4m78eqic.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.docxamine"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

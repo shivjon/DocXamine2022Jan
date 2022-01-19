@@ -11,7 +11,7 @@ export const Styles = StyleSheet.create({
         backgroundColor: color.white,
         borderWidth: 1,
         width: '100%',
-        fontFamily: 'Muli-Light',
+        fontFamily: 'Poppins-Light',
         borderRadius: 15,
         justifyContent: 'space-between',
         flexDirection:"row"
@@ -137,143 +137,143 @@ export const Styles = StyleSheet.create({
         alignItems:"center"
     },
     text12L:{
-        fontFamily:"Muli-Light", 
+        fontFamily:"Poppins-Light", 
         fontSize:12,
     },
     text12M:{
-        fontFamily:"Muli-Medium", 
+        fontFamily:"Poppins-Medium", 
         fontSize:12,
     },
     text12RCGM:{
-        fontFamily:"Muli-Regular", 
+        fontFamily:"Poppins-Regular", 
         fontSize:12,
         color:color.greyMedium,
     },
     text12R:{
-        fontFamily:"Muli-Regular", 
+        fontFamily:"Poppins-Regular", 
         fontSize:12,
     },
     text9R:{
-        fontFamily:"Muli-Regular", 
+        fontFamily:"Poppins-Regular", 
         fontSize:9,
     },
     text18SN:{
-        fontFamily:"Muli-SemiBold",
+        fontFamily:"Poppins-SemiBold",
         fontSize:18,
     },
     text14L:{
-        fontFamily:"Muli-Light", 
+        fontFamily:"Poppins-Light", 
         fontSize:14,
     },
     text14LR:{
-        fontFamily:"Muli-Light", 
+        fontFamily:"Poppins-Light", 
         fontSize:14,
         color:color.red,
         paddingHorizontal:5,
         paddingTop:2
     },
     text14SB:{
-        fontFamily:"Muli-SemiBold", 
+        fontFamily:"Poppins-SemiBold", 
         fontSize:14,
     },
     text14B:{
-        fontFamily:"Muli-Bold", 
+        fontFamily:"Poppins-Bold", 
         fontSize:14,
     },
     text14R:{
-        fontFamily:"Muli-Regular", 
+        fontFamily:"Poppins-Regular", 
         fontSize:14,
         color:color.black
     },
     text14M:{
-        fontFamily:"Muli-Medium", 
+        fontFamily:"Poppins-Medium", 
         fontSize:14,
     },
     text16B:{
-        fontFamily:"Muli-SemiBold", 
+        fontFamily:"Poppins-SemiBold", 
         fontSize:16,
     },
     text16LB:{
-        fontFamily:"Muli-Bold", 
+        fontFamily:"Poppins-Bold", 
         fontSize:16,
     },
     text16R:{
-        fontFamily:"Muli-Regular", 
+        fontFamily:"Poppins-Regular", 
         fontSize:16,
     },
     text16M:{
-        fontFamily:"Muli-Medium", 
+        fontFamily:"Poppins-Medium", 
         fontSize:16,
     },
     text18R:{
-        fontFamily:"Muli-Regular", 
+        fontFamily:"Poppins-Regular", 
         fontSize:18,
     },
     text18SB:{
-        fontFamily:"Muli-SemiBold",  
+        fontFamily:"Poppins-SemiBold",  
         fontSize:18,
     },
     text18M:{
-        fontFamily:"Muli-Medium",  
+        fontFamily:"Poppins-Medium",  
         fontSize:18,
     },
     text15L:{
-        fontFamily:"Muli-Light", 
+        fontFamily:"Poppins-Light", 
         fontSize:15,
     },
     text10L:{
-        fontFamily:"Muli-Light", 
+        fontFamily:"Poppins-Light", 
         fontSize:10,
     },
     text10M:{
-        fontFamily:"Muli-Medium", 
+        fontFamily:"Poppins-Medium", 
         fontSize:10,
     },
     text15R:{
-        fontFamily:"Muli-Regular", 
+        fontFamily:"Poppins-Regular", 
         fontSize:15,
     },
     text15B:{
-        fontFamily:"Muli-SemiBold", 
+        fontFamily:"Poppins-SemiBold", 
         fontSize:15,
     },
     text15RCB:{
-        fontFamily:"Muli-Regular", 
+        fontFamily:"Poppins-Regular", 
         fontSize:18,
         color:color.greyMedium,
     },
     text15RCR:{
-        fontFamily:"Muli-Regular", 
+        fontFamily:"Poppins-Regular", 
         fontSize:18,
         color:color.white
     },
     text15M:{
-        fontFamily:"Muli-Medium", 
+        fontFamily:"Poppins-Medium", 
         fontSize:15,
     },
     text20M:{
-        fontFamily:"Muli-Medium", 
+        fontFamily:"Poppins-Medium", 
         fontSize:20,
     },
     text20SM:{
-        fontFamily:"Muli-SemiBold", 
+        fontFamily:"Poppins-SemiBold", 
         fontSize:20,
     },
     text20R:{
-        fontFamily:"Muli-Regular", 
+        fontFamily:"Poppins-Regular", 
         fontSize:20,
     },
     text10R:{
-        fontFamily:"Muli-Regular", 
+        fontFamily:"Poppins-Regular", 
         fontSize:10,
     },
     text22SB:{
-        fontFamily:"Muli-SemiBold",
+        fontFamily:"Poppins-SemiBold",
         fontSize:22,
         color:color.black
     },
     text22B:{
-        fontFamily:"Muli-Bold",
+        fontFamily:"Poppins-Bold",
         fontSize:22,
         color:color.black
     },
@@ -288,7 +288,7 @@ export const Styles = StyleSheet.create({
         justifyContent:"space-evenly",
     },
     textError:{
-        fontFamily:"Muli-Regular", 
+        fontFamily:"Poppins-Regular", 
         fontSize:10,
         color:color.red,
         paddingVertical:5,

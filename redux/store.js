@@ -3,10 +3,10 @@ import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 
 import authReducer from './reducers/authReducer';
-// import mainReducer from './reducers/mainReducer';
+import mainReducer from './reducers/mainReducer';
 const rootReducer = combineReducers({
     auth: authReducer,
-    // main: mainReducer
+    main: mainReducer
 });
 
 const middleware = composeWithDevTools(applyMiddleware(thunk));

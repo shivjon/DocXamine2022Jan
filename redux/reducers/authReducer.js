@@ -23,6 +23,18 @@ import {
   REGISTER_USER_SUCCESS,
   REGISTER_USER_FAIL,
   OFFLINE_STATUS,
+  OTP_USER_SUCCESS,
+  OTP_USER_FAIL,
+  RESEND_OTP_USER_FAIL,
+  RESEND_OTP_USER_SUCCESS,
+  ARE_YOU_A_SUCCESS,
+  ARE_YOU_A_FAIL,
+  CREATE_DOCTOR_PROFILE_SUCCESS,
+  CREATE_DOCTOR_PROFILE_FAIL,
+  IMAGE_UP_SUCCESS,
+  IMAGE_UP_FAIL,
+  CHECK_PROFILE_SUCCESS,
+  CHECK_PROFILE_FAIL,
 } from '../actions/authAction';
 
 const initialState = {
@@ -38,6 +50,66 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case CHECK_PROFILE_SUCCESS:
+      return {
+        ...state,
+        data: action.payload,
+      };
+    case CHECK_PROFILE_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+      };
+    case IMAGE_UP_SUCCESS:
+      return {
+        ...state,
+        data: action.payload,
+      };
+    case IMAGE_UP_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+      };
+    case CREATE_DOCTOR_PROFILE_SUCCESS:
+      return {
+        ...state,
+        data: action.payload,
+      };
+    case CREATE_DOCTOR_PROFILE_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+      };
+    case ARE_YOU_A_SUCCESS:
+      return {
+        ...state,
+        data: action.payload,
+      };
+    case ARE_YOU_A_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+      };
+    case RESEND_OTP_USER_FAIL:
+      return {
+        ...state,
+        data: action.payload,
+      };
+    case RESEND_OTP_USER_SUCCESS:
+      return {
+        ...state,
+        error: action.payload,
+      };
+    case OTP_USER_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+      };
+    case OTP_USER_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+      };
     case LOGIN_USER_AUTH_SUCCESS:
       return {
         ...state,

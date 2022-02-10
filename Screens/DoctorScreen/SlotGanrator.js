@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  ToastAndroid,
 } from 'react-native';
 import {
   Box,
@@ -24,27 +25,32 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import ModalSelector from 'react-native-modal-selector';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Button from '../../component/Button';
+import moment from 'moment';
+import * as authAction from "../../redux/actions/authAction";
+import * as mainAction from "../../redux/actions/mainAction";
+import { useDispatch, useSelector } from 'react-redux';
 
 const SlotGanrator = props => {
+
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const token = useSelector(state => state.auth.user.data.token);
+
   let index = 0;
   const data = [
-    {key: index++, label: '10 min'},
-    {key: index++, label: '20 min'},
-    {key: index++, label: '30 min'},
-    {key: index++, label: '40 min'},
-    {key: index++, label: '50 min'},
-    {key: index++, label: '60 min'},
+    {key: index++, label: '15 min', state:"quarter"},
+    {key: index++, label: '30 min', state:"half"},
+    {key: index++, label: '60 min', state:"one" },
   ];
-  const [date, setDate] = useState(new Date(1598051730000));
-  const [mode, setMode] = useState('date');
+  const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
+  const [date1, setDate1] = useState(new Date());
+  const [show1, setShow1] = useState(false);
   const [showSlot, setshowSlot] = useState(false);
-
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === 'ios');
-    setDate(currentDate);
-  };
+  const [openTime, setopenTime] = useState("");
+  const [closeTime, setcloseTime] = useState("");
+  const [slottime, setslottime] = useState("");
+  const [slotValue, setslotValue] = useState("");
 
   const [slots, setslots] = useState([
     {name: '7:30 am'},
@@ -57,6 +63,61 @@ const SlotGanrator = props => {
     {name: '7:30 pm'},
     {name: '8:30 pm'},
   ]);
+
+
+  
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+    console.log(moment(currentDate).format('HH:mm'));
+    setopenTime(moment(currentDate).format('HH:mm').toString())
+  };
+
+  const onChange1 = (event, selectedDate) => {
+    const currentDate1 = selectedDate || date1;
+    setShow1(Platform.OS === 'ios');
+    setDate1(currentDate1);
+    setcloseTime(moment(currentDate1).format('HH:mm').toString())
+  };
+
+  const convertTime = (time) =>{
+    var opt = time.split(":");
+    console.log(opt);
+     return  parseInt(opt[0])*60+parseInt(opt[1]) 
+  
+  }
+
+  const onHandleGenerateSlot = () =>{
+ 
+    let value = {
+      'openT': convertTime(openTime),
+      'closeT': convertTime(closeTime),
+      'duration': slotValue
+    }
+    dispatch(mainAction.slotGenerator(value, token))
+    .then(result => {
+      console.log(result)
+      if(result.status == 200){
+        props.navigation.navigate("HomeStack");
+        ToastAndroid.show(result.message, ToastAndroid.LONG)
+      }else if(result.status == 409){
+        // props.navigation.navigate("HomeStack");
+        ToastAndroid.show(result.message, ToastAndroid.LONG)
+      } 
+      else{
+        ToastAndroid.show(result.message, ToastAndroid.LONG);
+      }
+    })
+    .catch(err => {
+      ToastAndroid.show(err, ToastAndroid.LONG)
+      setLoading(false)
+      console.log(err)
+    })
+  }
+
+
 
   return (
     <SafeAreaView style={Styles.container}>
@@ -79,21 +140,23 @@ const SlotGanrator = props => {
               <TextInput
                 placeholder="Open time*"
                 editable={false}
-                style={styles.inputView}
+                style={openTime ?styles.inputView : styles.inputView1}
+                value={openTime}
               />
             </TextInputBox>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.inputBox}
-            onPress={() => setShow(true)}>
+            onPress={() => setShow1(true)}>
             <TextInputBox style={styles.inputView}>
               <Entypo name="time-slot" size={20} color={color.greyMedium} />
               <VerticalBox style={5} />
               <TextInput
                 placeholder="Close time*"
                 editable={false}
-                style={styles.inputView}
+                style={closeTime ?styles.inputView : styles.inputView1}
+                value={closeTime}
               />
             </TextInputBox>
           </TouchableOpacity>
@@ -107,7 +170,7 @@ const SlotGanrator = props => {
           scrollViewAccessibilityLabel={'Scrollable options'}
           cancelButtonAccessibilityLabel={'Cancel Button'}
           optionContainerStyle={styles.backgroundColor}
-          // onChange={(option)=>{ this.setState({textInputValue:option.label})}}
+          onChange={(option)=>{ setslottime(option.label); setslotValue(option.state) }}
         >
           <TextInput
             style={{
@@ -115,10 +178,12 @@ const SlotGanrator = props => {
               height: 45,
               borderColor: color.primary,
               padding: 0,
+              fontFamily:"Poppins-Medium",
+              color: slottime ? color.black:null
             }}
             editable={false}
             placeholder="Duration"
-            // value={this.state.textInputValue}
+            value={slottime}
           />
           <MaterialIcons
             name="keyboard-arrow-down"
@@ -131,7 +196,7 @@ const SlotGanrator = props => {
             
             <Button
             name="Generate"
-            onPress={() => setshowSlot(true)}
+            onPress={() => onHandleGenerateSlot()}
             />
             <PaddingBox style={10} />
       </Box>
@@ -166,7 +231,7 @@ const SlotGanrator = props => {
    
       </ScrollView>
         }
-      {show && (
+         {show && (
         <DateTimePicker
           testID="dateTimePicker"
           value={date}
@@ -174,6 +239,16 @@ const SlotGanrator = props => {
           is24Hour={true}
           display="default"
           onChange={onChange}
+        />
+      )}
+      {show1 && (
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={date1}
+          mode={'time'}
+          is24Hour={true}
+          display="default"
+          onChange={onChange1}
         />
       )}
     </SafeAreaView>
@@ -192,6 +267,13 @@ const styles = StyleSheet.create({
     },
   inputView: {
     width: '100%',
+    fontFamily:"Poppins-Medium",
+    color:color.black
+  },
+  inputView1: {
+    width: '100%',
+    fontFamily:"Poppins-Medium",
+    color:null
   },
   arrowIcon: {position: 'absolute', right: 5, top: 15},
   backgroundColor: {

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Button, View, Text, StyleSheet, Image} from 'react-native';
+import {Button, View, Text, StyleSheet, Image, Platform} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -9,10 +9,10 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 // 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-// import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 // import {createDrawerNavigator} from '@react-navigation/drawer';
 const Stack = createStackNavigator();
-// const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 // const Drawer = createDrawerNavigator();
 
 import { color } from '../component/theme';
@@ -23,131 +23,89 @@ import LoginScreen from '../Screens/Authentication/LoginScreen';
 import ChooseUserType from '../Screens/Dashboard/ChooseUserType';
 import RegistrationFormScreen from '../Screens/Dashboard/RegistrationFormScreen';
 import SlotGanrator from '../Screens/DoctorScreen/SlotGanrator';
+import DashboardDoctor from '../Screens/DoctorScreen/DashboardDoctor';
+import ViewAppoinment from '../Screens/DoctorScreen/ViewAppoinment';
+import SettingScreen from '../Screens/DoctorScreen/SettingScreen';
+import SlotScreen from '../Screens/DoctorScreen/SlotScreen';
+
 
 
 
    // activeTintColor: color.primary,
         // inactiveTintColor: color.black,
 
-// function HomeStack() {
-//   return (
-//     <Tab.Navigator
-//     screenOptions={{
-//       tabBarStyle: { position: 'absolute',borderTopRightRadius:20, borderTopLeftRadius:20, backgroundColor:"#F4F4F4",
-//       height:55,paddingHorizontal:5,
-//     },
-//     tabBarShowLabel:false,
+function HomeStack() {
+  return (
+    <Tab.Navigator
+    screenOptions={{
+      tabBarStyle: { position: 'absolute',borderTopRightRadius:20, borderTopLeftRadius:20, backgroundColor:"#F4F4F4",
+      height:Platform.OS="ios"? 90 :55,paddingHorizontal:5,
+    },
+    tabBarShowLabel:false,
  
-//       headerShown: false,
-//     }}
+      headerShown: false,
+    }}
 
-//       >
-//       <Tab.Screen
-//         name="Homes"
-//         component={HomeScreen}
-//         options={{
-//           tabBarLabel: 'Home',
-//           tabBarIcon: ({focused,  size}) => (
-//             <View style={styles.tabStyle}>
-//               <Image
-//                   source={require('../assets/Home_press.png')}
-//                   style={focused ? styles.imageStyle: styles.imageStyle1}
-//                   resizeMode={"contain"}
-//                 />
-//             <PaddingBox style={2} />
-//             <Text style={[Styles.text10M, {color:focused ?  color.dSecond :color.navColor, fontSize:wp(2.7) }]}>Home</Text>
-//             </View>
-//           ),
-//         }}
-//       />
- 
-//       <Tab.Screen
-//         name="Profile"
-//         component={ProfileScreen}
-//         options={{
-//           tabBarVisible: false,
-//           tabBarLabel: 'Categories',
-//           tabBarIcon: ({focused,  size}) => (
-//             <View style={styles.tabStyle}>
-//              <Image
-//                   source={require('../assets/Profile.png')}
-//                   style={focused ? styles.imageStyle: styles.imageStyle1}
-//                   resizeMode={"contain"}
-//                 />
-//             <PaddingBox style={2} />
-//           <Text style={[Styles.text10M, {color:focused ?  color.dSecond :color.navColor,fontSize:wp(2.7) }]}>Profile</Text>
-//           </View>
-//           ),
-        
-//         }}
-//       />
-//        <Tab.Screen
-//         name="Darshan"
-//         component={ProfileScreen}
-//         options={{
-//           tabBarVisible: false,
-//           tabBarLabel: 'Categories',
-//           tabBarIcon: ({focused,  size}) => (
-//             <View style={styles.customStyle}>
-//               <View style={{
-//                 marginTop:-70,
-              
-//                 borderRadius:25,
-//                 alignItems:'center',justifyContent:'center'
-//               }}>
-//                 <Image
-//                   source={require('../assets/vip_icon.png')}
-//                   style={{width:70, height:70}}
-//                 />
-//               </View>
-//           <Text style={[Styles.text10M, {position:"absolute", bottom:-20, color:focused ?  color.dSecond :color.navColor, fontSize:wp(2.7)}]}>Darshan</Text>
-//           </View>
-//           ),
-        
-//         }}
-//       />
-//        <Tab.Screen
-//         name="order"
-//         component={ProfileScreen}
-//         options={{
-//           tabBarVisible: false,
-//           tabBarLabel: 'Categories',
-//           tabBarIcon: ({focused, size}) => (
-//             <View style={styles.tabStyle}>
-//               <Image
-//                   source={require('../assets/My_Order.png')}
-//                   style={focused ? styles.imageStyle: styles.imageStyle1}
-//                   resizeMode={"contain"}
-//                 />
-//               <PaddingBox style={2} />
-//             <Text style={[Styles.text10M, {color:focused ?  color.dSecond :color.navColor,fontSize:wp(2.7) }]}>My Order</Text>
-//             </View>
-//           ),
-          
-//         }}
-//       />
-//       <Tab.Screen
-//         name="Subscription"
-//         component={SubscriptionList}
-//         options={{
-//           tabBarVisible: false,
-//           tabBarLabel: 'Profile',
-//           tabBarIcon: ({focused, size}) => (
-//             <View style={styles.tabStyle}>
-//               <Image
-//                   source={require('../assets/Subscription.png')}
-//                   style={focused ? styles.imageStyle: styles.imageStyle1}
-//                   resizeMode={"contain"}
-//                 />
-//             <PaddingBox style={2} />
-//           <Text style={[Styles.text10M, {color:focused ?  color.dSecond :color.navColor, fontSize:wp(2.7) }]}>Subscription</Text>
-//           </View>
-//           ),
-//         }}
-//       />
-//     </Tab.Navigator>
-//   );
-// }
+      >
+      <Tab.Screen
+        name="Homes"
+        component={DashboardDoctor}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({focused,  size}) => (
+            <View style={styles.tabStyle}>
+             <Feather name="home" size={24} color="black" />
+            <PaddingBox style={2} />
+            <Text style={[Styles.text10M, {color:focused ?  color.dSecond :color.navColor, fontSize:wp(2.7) }]}>Home</Text>
+            </View>
+          ),
+        }}
+      />
+        <Tab.Screen
+        name="Appoinment"
+        component={ViewAppoinment}
+        options={{
+          tabBarLabel: 'Appoinment',
+          tabBarIcon: ({focused,  size}) => (
+            <View style={styles.tabStyle}>
+           <AntDesign name="carryout" size={24} color="black" />
+            <PaddingBox style={2} />
+            <Text style={[Styles.text10M, {color:focused ?  color.dSecond :color.navColor, fontSize:wp(2.7) }]}>Appinment</Text>
+            </View>
+          ),
+        }}
+      />
+        <Tab.Screen
+        name="Slot"
+        component={SlotScreen}
+        options={{
+          tabBarLabel: 'Slot',
+          tabBarIcon: ({focused,  size}) => (
+            <View style={styles.tabStyle}>
+           <Entypo name="time-slot" size={24} color="black" />
+            <PaddingBox style={2} />
+            <Text style={[Styles.text10M, {color:focused ?  color.dSecond :color.navColor, fontSize:wp(2.7) }]}>Slot</Text>
+            </View>
+          ),
+        }}
+      />
+        <Tab.Screen
+        name="Settings"
+        component={SettingScreen}
+        options={{
+          tabBarLabel: 'Settings',
+          tabBarIcon: ({focused,  size}) => (
+            <View style={styles.tabStyle}>
+             <AntDesign name="setting" size={24} color="black" />
+            <PaddingBox style={2} />
+            <Text style={[Styles.text10M, {color:focused ?  color.dSecond :color.navColor, fontSize:wp(2.7) }]}>Settings</Text>
+            </View>
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
 
 const styles = StyleSheet.create({
   tabStyle: {
@@ -161,56 +119,7 @@ imageStyle:{width:20, height:20, tintColor:color.dSecond}
 
 });
 
-function AuthenticationStack() {
-  return (
-    <Stack.Navigator
-    screenOptions={{
-      headerShown: false,
-    }}
-    initialRouteName="LoginScreen"
-    >
-      <Stack.Screen name="LoginScreen" component={LoginScreen} />
-       <Stack.Screen name="OtpScreen" component={OtpScreen} />
-    </Stack.Navigator>
-  );
-}
 
-function EcommerceStack() {
-  return (
-    <Stack.Navigator
-    screenOptions={{
-      headerShown: false,
-    }}
-    initialRouteName="WelcomeDoctor"
- 
-    >
-      <Stack.Screen name="WelcomeDoctor" component={WelcomeDoctor} />
-      <Stack.Screen name="DoctorDarshboard" component={DoctorDarshboard} />
-      <Stack.Screen name="DoctorProfileScreen" component={DoctorProfileScreen} />
-      <Stack.Screen name="DoctorExperienceScreen" component={DoctorExperienceScreen} />
-      {/* <Stack.Screen name="" component={} /> */}
-      {/* <Stack.Screen name="" component={} /> */}
-      {/* <Stack.Screen name="" component={} /> */}
-    </Stack.Navigator>
-  );
-}
-
-function DrawerMenu() {
-  return (
-      <Drawer.Navigator
-      screenOptions={{
-        headerShown: false,
-        lazy:false,
-        drawerStyle: {
-          width: "85%",
-        },
-      }}
-      drawerContent={props => <CustomDrawerContent {...props} />}
-      >
-      <Drawer.Screen name="EcommerceStack" component={EcommerceStack} />
-    </Drawer.Navigator>
-  )
-}
 
 export const AppNavigator = props => {
   
@@ -227,7 +136,7 @@ export const AppNavigator = props => {
        <Stack.Screen name="ChooseUserType" component={ChooseUserType} />
        <Stack.Screen name="RegistrationFormScreen" component={RegistrationFormScreen} />
        <Stack.Screen name="SlotGanrator" component={SlotGanrator} />
-       {/* <Stack.Screen name="DrawerMenu" component={DrawerMenu} /> */}
+       <Stack.Screen name="HomeStack" component={HomeStack} />
        {/* <Stack.Screen name="DrawerMenu" component={DrawerMenu} /> */}
        {/* <Stack.Screen name="DrawerMenu" component={DrawerMenu} /> */}
        {/* <Stack.Screen name="DrawerMenu" component={DrawerMenu} />

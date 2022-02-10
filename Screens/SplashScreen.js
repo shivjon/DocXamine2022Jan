@@ -19,20 +19,50 @@ import {
 const {width, height} = Dimensions.get('window');
 
 const SplashScreen = props => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [valueScreen, setValueScreen] = useState('');
   useEffect(() => {
-    setTimeout(function () {
-        props.navigation.dispatch(
-          StackActions.replace('LoginScreen')
-      );
-    }, 1000);
-  }, []);
+    async function fetchMyAPI() {
+      const value = await AsyncStorage.getItem('token');
+      const profile = await AsyncStorage.getItem('profile');
+        if (value !== null) {
+          // We have data!!
+          console.log('sa',value);
+          dispatch(authAction.UserAuth(JSON.parse(value)))
+          .then(result => {
+            console.log('jhjk', result)
+            if(profile == "1"){
+              setTimeout(function(){    props.navigation.dispatch(   
+                StackActions.replace('LoginScreen') 
+            );}, 1000);
+            }else{
+              setTimeout(function(){
+                props.navigation.dispatch(   
+                 StackActions.replace('HomeStack') 
+             );
+               }, 3000);
+            }
+           
+          })
+          .catch(err => {
+              setTimeout(function(){    props.navigation.dispatch(   
+                StackActions.replace('LoginScreen') 
+            );}, 1000);
+              
+          })
+        }else{
+          setTimeout(function(){    props.navigation.dispatch(   
+            StackActions.replace('LoginScreen') 
+        );}, 1000);
+        }
+    }
+    fetchMyAPI()
+}, []);
   
 
   return (
-    <View>
+    <View style={styles.container}> 
       <StatusBar backgroundColor={color.primary} />
       {/* <Image
           source={require('../assets/logo.png')}
@@ -40,9 +70,9 @@ const SplashScreen = props => {
           resizeMode="contain"
         /> */}
       <Text> Welcome DocXamine</Text>
-      <View style={styles.versionView}>
+      {/* <View style={styles.versionView}>
         <Text style={styles.textStyle}>V.1.0.1</Text>
-      </View>
+      </View> */}
     </View>
   );
 };
@@ -54,6 +84,7 @@ export default SplashScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems:'center',justifyContent:'center'
   },
   imageStyle: {
     // marginTop: 15,

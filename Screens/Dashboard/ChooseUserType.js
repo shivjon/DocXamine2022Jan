@@ -1,10 +1,43 @@
-import React from 'react';
-import {StyleSheet, Text, View, Image, SafeAreaView, TouchableOpacity} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {StyleSheet, Text, View, Image, SafeAreaView, TouchableOpacity, ToastAndroid} from 'react-native';
 import { Box, Center, PaddingBox, VerticalBox } from '../../component/AlignBox';
 import { Styles } from '../../component/Styles';
 import { color } from '../../component/theme';
+import * as authAction from "../../redux/actions/authAction";
+import { useDispatch, useSelector } from 'react-redux';
 
 const ChooseUserType = props => {
+    const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
+    const token = useSelector(state => state.auth.user.data.token);
+
+    useEffect(() => {
+            console.log(token);
+    }, []);
+    
+
+    const onWhoAreYou = (value) =>{
+        setLoading(true)
+        var val = {
+          "who": value,
+        }
+        dispatch(authAction.whoAreYou(val, token))
+          .then(result => {
+            console.log(result)
+            if(result.status == 200){
+              props.navigation.navigate("RegistrationFormScreen");
+            }else{
+                props.navigation.navigate("ChooseUserType")
+            }
+            setLoading(false);
+          })
+          .catch(err => {
+            ToastAndroid.show(err, ToastAndroid.LONG)
+            setLoading(false)
+            console.log(err)
+          })
+      }
+    
   return (
     <SafeAreaView style={Styles.container}>
         <View style={styles.headerView}>
@@ -22,7 +55,7 @@ const ChooseUserType = props => {
             </Center>
             
             <PaddingBox style={40} />
-            <TouchableOpacity style={styles.conBox} onPress={()=>props.navigation.navigate("RegistrationFormScreen")}>
+            <TouchableOpacity style={styles.conBox} onPress={()=>onWhoAreYou("doctor")}>
                 <Image
                     source={require('../../assets/doctor.png')}
                     style={{width:30, height:30, borderRadius:50}}
@@ -33,7 +66,7 @@ const ChooseUserType = props => {
                 </Text>
             </TouchableOpacity>
             <PaddingBox style={30} />
-            <View style={styles.conBox}>
+            <TouchableOpacity style={styles.conBox} onPress={()=>ToastAndroid.show("Coming soon..", ToastAndroid.LONG)}>
                 <Image
                     source={require('../../assets/patient.png')}
                     style={{width:30, height:30, }}
@@ -42,7 +75,7 @@ const ChooseUserType = props => {
                 <Text style={[Styles.text18SN,Styles.white]}>
                     Patient
                 </Text>
-            </View>
+            </TouchableOpacity>
         </Box>
     </SafeAreaView>
   );

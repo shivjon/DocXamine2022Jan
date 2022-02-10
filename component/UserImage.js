@@ -1,21 +1,30 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image} from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
-  } from 'react-native-responsive-screen';
-const UserImage = (props) => {
+} from 'react-native-responsive-screen';
+import { color } from './theme';
+const UserImage = ({ image, onHandleChangeImage, style }) => {
     return (
-        <View>
-            <Image
-                source={require('../assets/user.png')}
-                style={[{width:wp(30), height:wp(30)}, props.style]}
-                resizeMode="contain"
-            />
-        </View>
+        <TouchableOpacity onPress={() => onHandleChangeImage()}>
+            {image ?
+                <Image
+                    source={{ uri: image }}
+                    style={[styles.image, style]}
+                />
+                :
+                <Image
+                    source={require('../assets/user.png')}
+                    style={[styles.image, style]}
+                />
+            }
+        </TouchableOpacity>
     )
 }
 
 export default UserImage
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    image: { width: wp(30), height: wp(30), borderRadius: wp(15), backgroundColor:color.greyLite }
+})

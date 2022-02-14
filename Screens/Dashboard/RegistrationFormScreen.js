@@ -218,9 +218,11 @@ const RegistrationFormScreen = props => {
       .then(result => {
         console.log(result)
         if (result.status == 200) {
-          props.navigation.navigate("SlotGanrator");
-        } else {
           props.navigation.navigate("ChooseUserType")
+        } else {
+        ToastAndroid.show("Something went wrong.", ToastAndroid.LONG)
+
+          // props.navigation.navigate("ChooseUserType")
         }
         setLoading(false);
       })
@@ -337,7 +339,7 @@ const RegistrationFormScreen = props => {
                 borderBottomWidth: 1.5,
                 height: 45,
                 borderColor: color.primary,
-                padding: 0,
+                paddingLeft: 5,
                 fontFamily:"Poppins-Medium",
                 color:userData.doc_category ? color.black:null
               }}
@@ -413,7 +415,7 @@ const RegistrationFormScreen = props => {
                 borderBottomWidth: 1.5,
                 height: 45,
                 borderColor: color.primary,
-                padding: 0,
+                paddingLeft: 5,
                 fontFamily:"Poppins-Medium",
                 color:userData.doc_category ? color.black:null
               }}
@@ -475,7 +477,7 @@ const RegistrationFormScreen = props => {
                 borderBottomWidth: 1.5,
                 height: 45,
                 borderColor: color.primary,
-                padding: 0,
+                paddingLeft: 5,
                 fontFamily:"Poppins-Medium",
                 color:userData.doc_state ? color.black:null
               }}
@@ -507,7 +509,7 @@ const RegistrationFormScreen = props => {
                 borderBottomWidth: 1.5,
                 height: 45,
                 borderColor: color.primary,
-                padding: 0,
+                paddingLeft: 5,
                 fontFamily:"Poppins-Medium",
                 color:userData.doc_city ? color.black:null
               }}
@@ -575,7 +577,8 @@ const styles = StyleSheet.create({
     fontFamily:"Poppins-Medium"
   },
   timeLabel:{
-    fontFamily:"Poppins-Medium"
+    fontFamily:"Poppins-Medium",
+    color:color.placeholder,
   },
   crossIcon: {
     position: 'absolute',

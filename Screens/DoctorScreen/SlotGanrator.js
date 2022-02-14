@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -16,9 +16,9 @@ import {
   PaddingBox,
   VerticalBox,
 } from '../../component/AlignBox';
-import {Styles} from '../../component/Styles';
-import {TextInputBox} from '../../component/TextInputBox';
-import {color} from '../../component/theme';
+import { Styles } from '../../component/Styles';
+import { TextInputBox } from '../../component/TextInputBox';
+import { color } from '../../component/theme';
 import TopArrow from '../../component/TopArrow';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -38,9 +38,9 @@ const SlotGanrator = props => {
 
   let index = 0;
   const data = [
-    {key: index++, label: '15 min', state:"quarter"},
-    {key: index++, label: '30 min', state:"half"},
-    {key: index++, label: '60 min', state:"one" },
+    { key: index++, label: '15 min', state: "quarter" },
+    { key: index++, label: '30 min', state: "half" },
+    { key: index++, label: '60 min', state: "one" },
   ];
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
@@ -53,19 +53,17 @@ const SlotGanrator = props => {
   const [slotValue, setslotValue] = useState("");
 
   const [slots, setslots] = useState([
-    {name: '7:30 am'},
-    {name: '10:30 am'},
-    {name: '12:30 pm'},
-    {name: '2:30 pm'},
-    {name: '4:30 pm'},
-    {name: '5:30 pm'},
-    {name: '6:30 pm'},
-    {name: '7:30 pm'},
-    {name: '8:30 pm'},
+    { name: '7:30 am' },
+    { name: '10:30 am' },
+    { name: '12:30 pm' },
+    { name: '2:30 pm' },
+    { name: '4:30 pm' },
+    { name: '5:30 pm' },
+    { name: '6:30 pm' },
+    { name: '7:30 pm' },
+    { name: '8:30 pm' },
   ]);
 
-
-  
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -82,39 +80,39 @@ const SlotGanrator = props => {
     setcloseTime(moment(currentDate1).format('HH:mm').toString())
   };
 
-  const convertTime = (time) =>{
+  const convertTime = (time) => {
     var opt = time.split(":");
     console.log(opt);
-     return  parseInt(opt[0])*60+parseInt(opt[1]) 
-  
+    return parseInt(opt[0]) * 60 + parseInt(opt[1])
+
   }
 
-  const onHandleGenerateSlot = () =>{
- 
+  const onHandleGenerateSlot = () => {
+    console.log(token);
     let value = {
       'openT': convertTime(openTime),
       'closeT': convertTime(closeTime),
       'duration': slotValue
     }
     dispatch(mainAction.slotGenerator(value, token))
-    .then(result => {
-      console.log(result)
-      if(result.status == 200){
-        props.navigation.navigate("HomeStack");
-        ToastAndroid.show(result.message, ToastAndroid.LONG)
-      }else if(result.status == 409){
-        // props.navigation.navigate("HomeStack");
-        ToastAndroid.show(result.message, ToastAndroid.LONG)
-      } 
-      else{
-        ToastAndroid.show(result.message, ToastAndroid.LONG);
-      }
-    })
-    .catch(err => {
-      ToastAndroid.show(err, ToastAndroid.LONG)
-      setLoading(false)
-      console.log(err)
-    })
+      .then(result => {
+        console.log(result)
+        if (result.status == 200) {
+          props.navigation.navigate("HomeStack");
+          ToastAndroid.show(result.message, ToastAndroid.LONG)
+        } else if (result.status == 409) {
+          // props.navigation.navigate("HomeStack");
+          ToastAndroid.show(result.message, ToastAndroid.LONG)
+        }
+        else {
+          ToastAndroid.show(result.message, ToastAndroid.LONG);
+        }
+      })
+      .catch(err => {
+        ToastAndroid.show(err, ToastAndroid.LONG)
+        setLoading(false)
+        console.log(err)
+      })
   }
 
 
@@ -124,11 +122,11 @@ const SlotGanrator = props => {
       <TopArrow navigation={props.navigation} color={color.black} />
       <Center>
         <PaddingBox style={7} />
-        <Text style={[Styles.text22B]}>Slot Generator</Text>
+        <Text style={[Styles.text22B]}>Generate your slots</Text>
       </Center>
       <PaddingBox style={20} />
       <Box>
-        <Text style={Styles.text18M}>How long do you need?</Text>
+        <Text style={Styles.text18M}>Select your working hours</Text>
         <PaddingBox style={20} />
         <View style={Styles.rowBet}>
           <TouchableOpacity
@@ -137,12 +135,8 @@ const SlotGanrator = props => {
             <TextInputBox style={styles.inputView}>
               <Entypo name="time-slot" size={20} color={color.greyMedium} />
               <VerticalBox style={5} />
-              <TextInput
-                placeholder="Open time*"
-                editable={false}
-                style={openTime ?styles.inputView : styles.inputView1}
-                value={openTime}
-              />
+              <Text  style={openTime ?styles.inputView : styles.inputView1}>{openTime?openTime: "Open time*"}</Text>
+          
             </TextInputBox>
           </TouchableOpacity>
 
@@ -152,12 +146,8 @@ const SlotGanrator = props => {
             <TextInputBox style={styles.inputView}>
               <Entypo name="time-slot" size={20} color={color.greyMedium} />
               <VerticalBox style={5} />
-              <TextInput
-                placeholder="Close time*"
-                editable={false}
-                style={closeTime ?styles.inputView : styles.inputView1}
-                value={closeTime}
-              />
+              <Text style={closeTime ?styles.inputView : styles.inputView1}>{closeTime?closeTime: "Close time*"}</Text>
+
             </TextInputBox>
           </TouchableOpacity>
         </View>
@@ -170,21 +160,24 @@ const SlotGanrator = props => {
           scrollViewAccessibilityLabel={'Scrollable options'}
           cancelButtonAccessibilityLabel={'Cancel Button'}
           optionContainerStyle={styles.backgroundColor}
-          onChange={(option)=>{ setslottime(option.label); setslotValue(option.state) }}
+          onChange={(option) => { setslottime(option.label); setslotValue(option.state) }}
         >
-          <TextInput
-            style={{
-              borderBottomWidth: 1.5,
-              height: 45,
-              borderColor: color.primary,
-              padding: 0,
-              fontFamily:"Poppins-Medium",
-              color: slottime ? color.black:null
-            }}
-            editable={false}
-            placeholder="Duration"
-            value={slottime}
-          />
+          <TextInputBox>
+
+            <Text
+              style={{
+                // borderBottomWidth: 1.5,
+                // height: 45,
+                borderColor: color.primary,
+                padding: 0,
+                fontFamily: "Poppins-Medium",
+                color: slottime ? color.black : null
+              }}
+
+            >
+              {slottime ? slottime : "Duration"}
+            </Text>
+          </TextInputBox>
           <MaterialIcons
             name="keyboard-arrow-down"
             size={24}
@@ -193,15 +186,20 @@ const SlotGanrator = props => {
           />
         </ModalSelector>
         <PaddingBox style={40} />
-            
-            <Button
-            name="Generate"
-            onPress={() => onHandleGenerateSlot()}
-            />
-            <PaddingBox style={10} />
+
+        <Button
+          name="Generate"
+          onPress={() => onHandleGenerateSlot()}
+        />
+        <PaddingBox style={20} />
+
+        <Text style={[Styles.text12R, { color: color.greyLite }]}>
+          NOTE :  Slots once generated cannot be edited. If needed, they have to be deleted and regenerated again.
+        </Text>
       </Box>
+
       <PaddingBox style={50} />
-      {showSlot &&
+      {/* {showSlot &&
       <ScrollView>
         <Box>
           <Text style={Styles.text18M}>Available Slots</Text>
@@ -230,8 +228,8 @@ const SlotGanrator = props => {
         </Box>
    
       </ScrollView>
-        }
-         {show && (
+        } */}
+      {show && (
         <DateTimePicker
           testID="dateTimePicker"
           value={date}
@@ -261,44 +259,44 @@ const styles = StyleSheet.create({
   inputBox: {
     width: '45%',
   },
-  containerList:{
-    flexWrap:"wrap",
-    flexDirection:"row",
-    },
+  containerList: {
+    flexWrap: "wrap",
+    flexDirection: "row",
+  },
   inputView: {
     width: '100%',
-    fontFamily:"Poppins-Medium",
-    color:color.black
+    fontFamily: "Poppins-Medium",
+    color: color.black
   },
   inputView1: {
     width: '100%',
-    fontFamily:"Poppins-Medium",
-    color:null
+    fontFamily: "Poppins-Medium",
+    color: null
   },
-  arrowIcon: {position: 'absolute', right: 5, top: 15},
+  arrowIcon: { position: 'absolute', right: 5, top: 15 },
   backgroundColor: {
     backgroundColor: color.white,
   },
-  containerBox:{
-    width:"30%",
-    borderRadius:10,
-    borderWidth:1,
-    borderColor:color.primary,
-    paddingVertical:10,
-    marginHorizontal:5,
-    marginVertical:7,
-    alignItems:'center',justifyContent:'center'
-    
-},
-containerBoxIsSeleted:{
-    width:"30%",
-    borderRadius:10,
+  containerBox: {
+    width: "30%",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: color.primary,
+    paddingVertical: 10,
+    marginHorizontal: 5,
+    marginVertical: 7,
+    alignItems: 'center', justifyContent: 'center'
+
+  },
+  containerBoxIsSeleted: {
+    width: "30%",
+    borderRadius: 10,
     // borderWidth:1,
-    backgroundColor:color.primary,
-    paddingVertical:10,
-    marginHorizontal:5,
-    marginVertical:7,
-    alignItems:'center',justifyContent:'center'
-    
-},
+    backgroundColor: color.primary,
+    paddingVertical: 10,
+    marginHorizontal: 5,
+    marginVertical: 7,
+    alignItems: 'center', justifyContent: 'center'
+
+  },
 });

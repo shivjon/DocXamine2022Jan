@@ -25,9 +25,9 @@ const ChooseUserType = props => {
           .then(result => {
             console.log(result)
             if(result.status == 200){
-              props.navigation.navigate("RegistrationFormScreen");
+              props.navigation.navigate("SlotGanrator");
             }else{
-                props.navigation.navigate("ChooseUserType")
+              ToastAndroid.show("Something went wrong.", ToastAndroid.LONG);
             }
             setLoading(false);
           })

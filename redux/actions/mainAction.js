@@ -31,7 +31,7 @@ export const completionChecks = (token) => {
         .then(function (response) {
         // console.log(response.data);
         result = response.data
-        console.log("result", result);
+        console.log("resultsss", result, token);
         if(result.status == 200){
             dispatch({
                 type: CHECK_PROFILE_SUCCESS,

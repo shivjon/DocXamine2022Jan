@@ -18,4 +18,5 @@ export const color = {
     lightBlack:'#FAFAFA',
     green:'#369514',
     red:"#AB1111",
+    placeholder:"#C7C7CD",
 }

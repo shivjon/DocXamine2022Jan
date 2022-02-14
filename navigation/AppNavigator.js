@@ -62,15 +62,15 @@ function HomeStack() {
         }}
       />
         <Tab.Screen
-        name="Appoinment"
+        name="Appointments"
         component={ViewAppoinment}
         options={{
-          tabBarLabel: 'Appoinment',
+          tabBarLabel: 'Appointments',
           tabBarIcon: ({focused,  size}) => (
             <View style={styles.tabStyle}>
            <AntDesign name="carryout" size={24} color="black" />
             <PaddingBox style={2} />
-            <Text style={[Styles.text10M, {color:focused ?  color.dSecond :color.navColor, fontSize:wp(2.7) }]}>Appinment</Text>
+            <Text style={[Styles.text10M, {color:focused ?  color.dSecond :color.navColor, fontSize:wp(2.7) }]}>Appointments</Text>
             </View>
           ),
         }}

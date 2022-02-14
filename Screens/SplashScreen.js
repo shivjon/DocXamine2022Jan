@@ -28,7 +28,7 @@ const SplashScreen = props => {
       const profile = await AsyncStorage.getItem('profile');
         if (value !== null) {
           // We have data!!
-          console.log('sa',value);
+          console.log('sa',value, profile);
           dispatch(authAction.UserAuth(JSON.parse(value)))
           .then(result => {
             console.log('jhjk', result)

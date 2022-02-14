@@ -143,7 +143,7 @@ const LoginScreen = (props) => {
           } else {
             // props.navigation.navigate("HomeStack")
             AsyncStorage.setItem(
-              'token', JSON.stringify(value)
+              'token', JSON.stringify(result)
             );
             onCheckPendingDetails(result.data, result);
           }
@@ -190,7 +190,7 @@ const LoginScreen = (props) => {
     dispatch(mainAction.completionChecks(token.token))
       .then(result => {
         if (result.status == 200) {
-          console.log(result);
+          console.log("dasdasd",result);
           let data = result.body;
           // if (data.userIs == "doctor") {
             if (data.docProfileCreated == 0) {

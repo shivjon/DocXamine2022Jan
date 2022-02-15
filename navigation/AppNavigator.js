@@ -39,7 +39,7 @@ function HomeStack() {
     <Tab.Navigator
     screenOptions={{
       tabBarStyle: { position: 'absolute',borderTopRightRadius:20, borderTopLeftRadius:20, backgroundColor:"#F4F4F4",
-      height:Platform.OS="ios"? 90 :55,paddingHorizontal:5,
+      height:Platform.OS=="ios"? 90 :55,paddingHorizontal:5,
     },
     tabBarShowLabel:false,
  

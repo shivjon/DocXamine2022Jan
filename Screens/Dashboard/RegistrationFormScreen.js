@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
@@ -290,7 +289,7 @@ const RegistrationFormScreen = props => {
 }
 
   return (
-    <SafeAreaView style={Styles.container}>
+    <View style={Styles.container}>
       <TopArrow navigation={props.navigation} color={color.black} />
       <Loader loading={loading} />
       <ScrollView>
@@ -561,7 +560,7 @@ const RegistrationFormScreen = props => {
           onChange={onChange1}
         />
       )}
-    </SafeAreaView>
+    </View>
   );
 };
 

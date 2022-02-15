@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
   TextInput,
   TouchableOpacity,
   ScrollView,
@@ -118,7 +117,7 @@ const SlotGanrator = props => {
 
 
   return (
-    <SafeAreaView style={Styles.container}>
+    <View style={Styles.container}>
       <TopArrow navigation={props.navigation} color={color.black} />
       <Center>
         <PaddingBox style={7} />
@@ -249,7 +248,7 @@ const SlotGanrator = props => {
           onChange={onChange1}
         />
       )}
-    </SafeAreaView>
+    </View>
   );
 };
 

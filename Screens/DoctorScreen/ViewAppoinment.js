@@ -1,12 +1,12 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import {  StyleSheet, Text, View } from 'react-native';
 import SimpleHeader from '../../Comman/SimpleHeader';
 import { Box, PaddingBox } from '../../component/AlignBox';
 import { Styles } from '../../component/Styles';
 
 const ViewAppoinment = (props) => {
     return (
-        <SafeAreaView style={Styles.container}>
+        <View style={Styles.container}>
             <SimpleHeader name={"Appointments"} />
             <PaddingBox style={20} />
             <Box>
@@ -14,7 +14,7 @@ const ViewAppoinment = (props) => {
                     work under progress.....
                 </Text>
             </Box>
-        </SafeAreaView>
+        </View>
     )
 }
 

@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import {color} from '../component/theme';
+import React, { useState, useEffect } from 'react';
+import { color } from '../component/theme';
 import * as authAction from '../redux/actions/authAction';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {StackActions} from '@react-navigation/native';
+import { StackActions } from '@react-navigation/native';
 import {
   Dimensions,
   StatusBar,
@@ -16,7 +16,7 @@ import {
   Image,
   View,
 } from 'react-native';
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const SplashScreen = props => {
   const dispatch = useDispatch();
@@ -26,43 +26,50 @@ const SplashScreen = props => {
     async function fetchMyAPI() {
       const value = await AsyncStorage.getItem('token');
       const profile = await AsyncStorage.getItem('profile');
-        if (value !== null) {
-          // We have data!!
-          console.log('sa',value, profile);
-          dispatch(authAction.UserAuth(JSON.parse(value)))
+      if (value !== null) {
+        // We have data!!
+        console.log('sa', value, profile);
+        dispatch(authAction.UserAuth(JSON.parse(value)))
           .then(result => {
             console.log('jhjk', result)
-            if(profile == "1"){
-              setTimeout(function(){    props.navigation.dispatch(   
-                StackActions.replace('LoginScreen') 
-            );}, 1000);
-            }else{
-              setTimeout(function(){
-                props.navigation.dispatch(   
-                 StackActions.replace('HomeStack') 
-             );
-               }, 3000);
+            if (profile == "1") {
+              setTimeout(function () {
+                props.navigation.dispatch(
+                  StackActions.replace('LoginScreen')
+                );
+              }, 1000);
+            } else {
+              console.log("hello");
+              setTimeout(function () {
+                props.navigation.dispatch(
+                  StackActions.replace('HomeStack')
+                );
+              }, 3000);
             }
-           
+
           })
           .catch(err => {
-              setTimeout(function(){    props.navigation.dispatch(   
-                StackActions.replace('LoginScreen') 
-            );}, 1000);
-              
+            setTimeout(function () {
+              props.navigation.dispatch(
+                StackActions.replace('LoginScreen')
+              );
+            }, 1000);
+
           })
-        }else{
-          setTimeout(function(){    props.navigation.dispatch(   
-            StackActions.replace('LoginScreen') 
-        );}, 1000);
-        }
+      } else {
+        setTimeout(function () {
+          props.navigation.dispatch(
+            StackActions.replace('LoginScreen')
+          );
+        }, 1000);
+      }
     }
     fetchMyAPI()
-}, []);
-  
+  }, []);
+
 
   return (
-    <View style={styles.container}> 
+    <View style={styles.container}>
       <StatusBar backgroundColor={color.primary} />
       {/* <Image
           source={require('../assets/logo.png')}
@@ -84,7 +91,7 @@ export default SplashScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems:'center',justifyContent:'center'
+    alignItems: 'center', justifyContent: 'center'
   },
   imageStyle: {
     // marginTop: 15,

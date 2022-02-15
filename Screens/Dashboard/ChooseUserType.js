@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {StyleSheet, Text, View, Image, SafeAreaView, TouchableOpacity, ToastAndroid} from 'react-native';
+import {StyleSheet, Text, View, Image,  TouchableOpacity, ToastAndroid} from 'react-native';
 import { Box, Center, PaddingBox, VerticalBox } from '../../component/AlignBox';
 import { Styles } from '../../component/Styles';
 import { color } from '../../component/theme';
@@ -39,7 +39,7 @@ const ChooseUserType = props => {
       }
     
   return (
-    <SafeAreaView style={Styles.container}>
+    <View style={Styles.container}>
         <View style={styles.headerView}>
             <Image
                 source={require('../../assets/logo.png')}
@@ -77,7 +77,7 @@ const ChooseUserType = props => {
                 </Text>
             </TouchableOpacity>
         </Box>
-    </SafeAreaView>
+    </View>
   );
 };
 

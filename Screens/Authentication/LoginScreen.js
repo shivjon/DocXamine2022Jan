@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { ScrollView, StatusBar, TextInput, ToastAndroid, TouchableOpacity } from 'react-native'
-import { SafeAreaView, StyleSheet, Text, View, Image } from 'react-native'
+import {StyleSheet, Text, View, Image } from 'react-native'
 import { Box, Center, PaddingBox, Right, VerticalBox } from '../../component/AlignBox'
 import { Styles } from '../../component/Styles'
 import { color } from '../../component/theme'
@@ -221,7 +221,7 @@ const LoginScreen = (props) => {
 
   }
   return (
-    <SafeAreaView style={Styles.container}>
+    <View style={Styles.container}>
       <StatusBar backgroundColor={color.primary} />
       <Loader loading={loading} />
       <ScrollView>
@@ -320,7 +320,7 @@ const LoginScreen = (props) => {
           <PaddingBox style={20} />
         </Box>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   )
 }
 

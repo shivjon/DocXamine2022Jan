@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
   TextInput,
   TouchableOpacity,
   ScrollView,
@@ -123,7 +122,7 @@ const SlotScreen = props => {
 
 
   return (
-    <SafeAreaView style={Styles.container}>
+    <View style={Styles.container}>
         <SimpleHeader name={"Regenerate your slots"} />
       <PaddingBox style={20} />
       <Box>
@@ -216,7 +215,7 @@ const SlotScreen = props => {
           onChange={onChange1}
         />
       )}
-    </SafeAreaView>
+    </View>
   );
 };
 

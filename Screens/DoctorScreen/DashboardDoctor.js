@@ -1,4 +1,4 @@
-import {  SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {   ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { Styles } from '../../component/Styles';
 import SimpleHeader from '../../Comman/SimpleHeader';
@@ -70,10 +70,12 @@ const DashboardDoctor = (props) => {
 
 
   return (
-    <SafeAreaView style={Styles.container}>
+    <View style={Styles.container}>
       <Loader loading={loading} />
       <SimpleHeader name={"Dashboard"} />
+      <ScrollView>
       <PaddingBox style={25} />
+
       <Box>
         <Text style={Styles.text18SB}>
           Today's thought :
@@ -107,6 +109,8 @@ const DashboardDoctor = (props) => {
           </View>
         </ScrollView>
       </Box>
+      <PaddingBox style={80} />
+      </ScrollView>
 
 
       {show && (
@@ -119,7 +123,7 @@ const DashboardDoctor = (props) => {
           onChange={onChange}
         />
       )}
-    </SafeAreaView>
+    </View>
   );
 };
 

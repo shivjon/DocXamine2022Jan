@@ -1,11 +1,11 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import {  StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import SimpleHeader from '../../Comman/SimpleHeader';
 import { Box, PaddingBox } from '../../component/AlignBox';
 
 const SettingScreen = (props) => {
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <SimpleHeader name={"Settings"} />
             <PaddingBox style={20} />
             <Box>
@@ -13,7 +13,7 @@ const SettingScreen = (props) => {
                     work under progress.....
                 </Text>
             </Box>
-        </SafeAreaView>
+        </View>
     );
 };
 
